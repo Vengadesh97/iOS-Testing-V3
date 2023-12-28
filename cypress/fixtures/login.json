@@ -1,0 +1,16 @@
+{
+    "codeword" : {
+    "email":"cefabo2573@dixiser.com",
+    "password":"Test@123"
+    },
+
+    "group":{
+        "groupName":"Lauditor Welcome",
+        "descrp":"Test sample details added",
+        "Member1":"Group Head",
+        "Member2":"Team Member A",
+        "Member3":"Bharathi",
+        "Member4":"Arun",
+        "Member5":"Boomi"
+    }
+}
