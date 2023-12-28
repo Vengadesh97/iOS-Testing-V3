@@ -33,6 +33,7 @@ describe('Pages ',()=>{
           groups.oneTeamMemberSelect(data.group.Member1);
           groups.saveButton();
           groups.alertPopupViewChanges();
+          console.log("done");
 })
 
 })
