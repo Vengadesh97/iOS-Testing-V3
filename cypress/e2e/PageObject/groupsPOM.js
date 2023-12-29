@@ -18,7 +18,22 @@ class groupsPOM
 
         savebutton : () => cy.xpath("//div //button[text()='Save']"),
 
-        popupViewChanges : () => cy.xpath("//div //button[text()='View Changes']")
+        popupViewChanges : () => cy.xpath("//div //button[text()='View Changes']"),
+
+        viewgroupTab : () => cy.xpath("//button[text()='View Group']"),
+
+        viewgroupSearch : () => cy.get("input[placeholder='Search Group']"),
+
+        editgroupinfobutton : () => cy.get(':nth-child(1) > .dropdown-item'),
+
+        assertgroupname : () => cy.get('#caseTitle'),
+
+        assertdescription : () => cy.get(':nth-child(2) > .form-group > .form-control'),
+
+        groupcancelbutton : () => cy.get('.btncancel'),
+
+        updategroupmembersbutton : () => cy.get(':nth-child(2) > .dropdown-item')
+
       }
 
 
@@ -80,12 +95,87 @@ class groupsPOM
      cy.xpath("//div //div[text()='"+namesToSelect[i]+"'] //following::i[1]").click();
       }
     }
-
-
     oneTeamMemberSelect(text1)
       {
         cy.xpath("//div //div[text()='"+text1+"'] //following::input[1]").click();
       }
+
+     MultipleSelectedNameVerification(expectedTexts)
+     {
+      cy.xpath("//div[@class='multicheck form-control textbox active'] //div").each(($element, index) => {
+        cy.wrap($element).should('have.text', expectedTexts[index]);
+      });
+     } 
+
+     // View Group Page
+
+     viewGroupTab()
+     {
+      this.elements.viewgroupTab().click();
+     }
+
+     ViewGroupSearchBar(name)
+     {
+      this.elements.viewgroupSearch().type(name);
+     }
+
+     // Actions
+
+     actionButtonClick(name){
+      // Iterate through groupNameText elements
+    cy.xpath('//tr /td[1]').each(($groupNameText, index) => {
+      const groupTextComp = $groupNameText.text();
+
+      if (name.includes(groupTextComp)) {  
+        // Click on the action menu using Cypress
+        cy.get('.dropdown > .btn').eq(index).click();
+      }
+
+    })
+     }
+
+     // ************
+
+     // Under Action "Edit Group Info"
+     editGroupInfo()
+     {
+        this.elements.editgroupinfobutton().click();
+        cy.scrollTo('top');
+     }
+     //Group Name
+     assertGroupName(Name)
+     {
+      this.elements.assertgroupname().invoke('val').should('eql',Name);
+     }
+    
+     //Descrption
+     assertDescription(Name)
+     {
+      this.elements.assertdescription().invoke('val').should('eql',Name);
+     }
+     //Cancel
+     groupCancelButton()
+     {
+      this.elements.groupcancelbutton().click();
+     }          
+
+     // Update Group Members List
+
+     updateGroupMembersButton()
+     {
+        this.elements.updategroupmembersbutton().click();
+     }
+
+     selectedTeamMemberNameVerify(names)
+     {
+      cy.get(':nth-child(1) > :nth-child(n+3) > #selectedgroup > .form-control').each(($element, index) => {
+        cy.wrap($element).should('have.text', names[index]);
+      });
+
+     }
+     
+         
+
 }
 
 
