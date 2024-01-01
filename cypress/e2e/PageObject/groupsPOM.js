@@ -32,7 +32,13 @@ class groupsPOM
 
         groupcancelbutton : () => cy.get('.btncancel'),
 
-        updategroupmembersbutton : () => cy.get(':nth-child(2) > .dropdown-item')
+        updategroupmembersbutton : () => cy.get(':nth-child(2) > .dropdown-item'),
+
+        viewgroupVerifygroupName : () => cy.xpath('//tr //td[1]'),
+
+        viewgroupverifyDescription : () => cy.xpath('//tr //td[2]'),
+
+        viewgroupverifygroupHeadName : () => cy.xpath('//tr //td[3]')
 
       }
 
@@ -174,7 +180,27 @@ class groupsPOM
 
      }
      
-         
+    // View Groups verify the group name 
+
+    //Group Name
+    viewGroupVerifyGroupName(Name)
+    {
+    this.elements.viewgroupVerifygroupName().contains(Name);
+    }
+   
+    //Descrption
+    viewGroupVerifyDescription(Name)
+    {
+     this.elements.viewgroupverifyDescription().contains(Name);
+    }
+
+    // Group Head
+
+    viewgroupVerifyGroupHeadName(Name)
+    {
+      this.elements.viewgroupverifygroupHeadName().contains(Name);
+    }
+
 
 }
 

@@ -28,3 +28,5 @@
 /// <reference types ="Cypress"/>
 
 /// <reference types ="cypress-xpath"/>
+
+import 'cypress-file-upload';
